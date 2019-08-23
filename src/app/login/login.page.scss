@@ -1,0 +1,31 @@
+ion-content{
+
+    --ion-background-color:#3880ff;
+    border-bottom-color: transparent !important;
+}
+ion-item{
+    --ion-background-color: white;
+}
+ion-segment-button {
+    
+    --border-color: white;
+    
+     
+    --indicator-color-checked: white;
+  }
+
+.true{
+    background-color: #ffffff; 
+    width: 5px; height: 5px; 
+    border-radius: 30px;
+    -webkit-box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
+    box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
+}
+.false{
+
+  background-color: #ffffff; 
+    width: 5px; height: 5px; 
+    border-radius: 30px;
+    -webkit-box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
+    box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
+}
