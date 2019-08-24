@@ -12,7 +12,7 @@ export class Tab1Page {
   ionViewDidLoad() {
     if (!this.statusBar.isVisible) {
         this.statusBar.show();
-        this.statusBar.backgroundColorByHexString('#20059C');
+        this.statusBar.backgroundColorByHexString('#4c8dff');
     }
     this.statusBar.overlaysWebView(true);
   

@@ -1,11 +1,11 @@
 <ion-header>
-   
 </ion-header>
-
 <ion-content >
     <ion-grid>
         <ion-row style="width: 70%; margin:auto; margin-top: 60%; ">
-          <ion-col col-4 style=" background: linear-gradient(to bottom right, rgb(104, 104, 240), rgb(224, 111, 252)); border-radius: 30px;"> 
+            <p style="color:white; margin-left:auto; margin-right: auto; font-family: Comic Sans MS, cursive, sans-serif; font-style: italic; font-size: 200%">Healthy Life!</p>
+          <ion-col col-4 style=" background: linear-gradient(to bottom right, #00ffff, #6d6dff); border-radius: 30px;"> 
+            
             <ion-segment class="segment" [(ngModel)]="board">
               <ion-segment-button id="login" (click)="logintab()"   value="meallist" style="background-color: #ffffff; border-radius: 30px; white-space: inherit;">
                  <ion-label style="color: black;">Login</ion-label> 
@@ -19,7 +19,7 @@
       </ion-grid>
       <ion-slides #slides pager="true" [options]="slideOpts" (ionSlideReachEnd)="lastSlide()" (ionSlidePrevStart)="firstSlide()">
       <ion-slide>
-      <ion-card style="margin-top: 20%; background-color: white; width: 80%; margin-left: auto; margin-right:auto;">
+      <ion-card style="margin-top: 10%; background-color: white; width: 80%; margin-left: auto; margin-right:auto;">
           <ion-card-content style="background: white;">
             <ion-list lines="none" style="background-color: white;">
                 <ion-item no-lines>
@@ -41,7 +41,7 @@
         </ion-card>
         </ion-slide>
         <ion-slide>
-            <ion-card style="margin-top: 20%; background-color: white; width: 80%; margin-left: auto; margin-right:auto;">
+            <ion-card style="margin-top: 5%; background-color: white; width: 80%; margin-left: auto; margin-right:auto;">
                 <ion-card-content style="background: white;">
                   <ion-list lines="none" style="background-color: white;">
                       <ion-item no-lines>

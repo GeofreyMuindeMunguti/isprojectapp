@@ -24,7 +24,7 @@ export class AppComponent {
   ionViewDidLoad() {
     if (!this.statusBar.isVisible) {
         this.statusBar.show();
-        this.statusBar.backgroundColorByHexString('#20059C');
+        this.statusBar.backgroundColorByHexString('#3171e0');
     }
     this.statusBar.overlaysWebView(true);
 
