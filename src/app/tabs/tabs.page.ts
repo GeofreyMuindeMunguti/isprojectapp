@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-//import { StatusBar } from '@ionic-native/status-bar';
+import { NavController } from '@ionic/angular';
+import { LoginPage } from '../login/login.page';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-tabs',
@@ -8,14 +10,17 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {
-     // let status bar overlay webview
-//this.statusBar.overlaysWebView(true);
-
-// set status bar to white
-//this.statusBar.backgroundColorByHexString('#ffffff');
+  constructor( private navCtrl: NavController, private statusBar: StatusBar) {
+}
+ionViewDidLoad() {
+  if (!this.statusBar.isVisible) {
+      this.statusBar.show();
+      this.statusBar.backgroundColorByHexString('#20059C');
   }
-  
+  this.statusBar.overlaysWebView(true);
 
 
+}
+
+ 
 }

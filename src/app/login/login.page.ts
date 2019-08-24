@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
-import {IonSlides} from '@ionic/angular';
+import {IonSlides, NavController} from '@ionic/angular';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { NavComponent } from '@ionic/core';
 //import { read } from 'fs';
 
 
@@ -18,14 +20,23 @@ export class LoginPage implements OnInit {
 
   @ViewChild('slides', {static: true }) slides: IonSlides;
 
-   lgvalue: any;
-   savalue: any;
-
-
-  constructor() { }
-
-  ngOnInit() {
+   
+  constructor(private statusBar: StatusBar, private navCtrl: NavController) { 
   }
+  ionViewDidLoad() {
+    if (!this.statusBar.isVisible) {
+        this.statusBar.show();
+        this.statusBar.backgroundColorByHexString('#20059C');
+    }
+    this.statusBar.overlaysWebView(true);
+
+
+}
+  ngOnInit() {
+ 
+ 
+  }
+   
 
   
   lastSlide(){
@@ -54,6 +65,9 @@ export class LoginPage implements OnInit {
     //console.log("clicked register")
    this.slides.slideNext();
 
+  }
+  login(){
+    this.navCtrl.navigateRoot('');
   }
 }
 

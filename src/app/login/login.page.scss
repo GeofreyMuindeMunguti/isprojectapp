@@ -1,6 +1,7 @@
 ion-content{
 
-    --ion-background-color:#3880ff;
+    
+   --background: url(../../assets/bck4.svg);
     border-bottom-color: transparent !important;
 }
 ion-item{
@@ -8,10 +9,8 @@ ion-item{
 }
 ion-segment-button {
     
-    --border-color: white;
     
-     
-    --indicator-color-checked: white;
+    --indicator-color-checked: transparent;
   }
 
 .true{

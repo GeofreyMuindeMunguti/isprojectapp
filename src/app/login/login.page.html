@@ -5,13 +5,13 @@
 <ion-content >
     <ion-grid>
         <ion-row style="width: 70%; margin:auto; margin-top: 60%; ">
-          <ion-col col-4 style=" background: rgb(161, 214, 228); border-radius: 30px;"> 
+          <ion-col col-4 style=" background: linear-gradient(to bottom right, rgb(104, 104, 240), rgb(224, 111, 252)); border-radius: 30px;"> 
             <ion-segment class="segment" [(ngModel)]="board">
               <ion-segment-button id="login" (click)="logintab()"   value="meallist" style="background-color: #ffffff; border-radius: 30px; white-space: inherit;">
-                 <ion-label>Login</ion-label> 
+                 <ion-label style="color: black;">Login</ion-label> 
               </ion-segment-button>
               <ion-segment-button id="signup"  (click)="registertab()" value="mapview"  style=" border-radius: 30px; white-space: inherit;">
-               <ion-label>Register</ion-label>
+               <ion-label style="color: black">Register</ion-label>
               </ion-segment-button>
             </ion-segment>
           </ion-col>
@@ -34,7 +34,7 @@
                 </ion-item>
                 <br/> 
                  
-                    <ion-button >SIGN IN</ion-button>
+                    <ion-button (click)="login()">SIGN IN</ion-button>
                   
                 </ion-list>
           </ion-card-content>
