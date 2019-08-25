@@ -8,6 +8,12 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class Tab1Page {
   meals = [{"name":"Meal 1"},{"name":"Meal 2"},{"name":"Meal 3"}];
+  sliderConfig = {
+    slidesPerView: 1.2,
+    spaceBetween: 5,
+    centeredSlides: true
+  };
+ 
   constructor(private statusBar: StatusBar) {}
   ionViewDidLoad() {
     if (!this.statusBar.isVisible) {
@@ -17,6 +23,14 @@ export class Tab1Page {
     this.statusBar.overlaysWebView(true);
   
   
+  }
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
   }
 
 }

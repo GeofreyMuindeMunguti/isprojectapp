@@ -1,9 +1,21 @@
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
+ion-content{
 
-  .card {
-    height: 40%;
-    width: 80%;
- }
+    
+  --background: url(../../assets/tabsbck.svg);
+   border-bottom-color: transparent !important;
+}
+ ion-card{
+  width: 100%;
+ 
+}
+
+ 
+.badge{
+   
+    background-color: orange;
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    border-radius: 100%;
+
 }

@@ -1,1 +1,25 @@
 
+ion-content{
+
+    
+    --background: url(../../assets/tabsbck.svg);
+     border-bottom-color: transparent !important;
+ }
+ion-card{
+    
+    align-self: auto;
+    align-content: center;
+    text-align: center;
+   
+  }
+  
+   
+  .badge{
+     
+      background-color: orange;
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      border-radius: 100%;
+  
+  }

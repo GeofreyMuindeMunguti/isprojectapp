@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  meals = [{"name":"Meal 1"},{"name":"Meal 2"},{"name":"Meal 3"}];
 
   constructor() {}
 
