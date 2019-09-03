@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import {IonSlides, NavController} from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Storage } from '@ionic/storage';
-import { NavComponent } from '@ionic/core';
+import {AuthService} from '../../services/auth.service';
+import {StorageService} from '../../services/storage.service';
+import {AlertController} from '@ionic/angular';
+
+
 //import { read } from 'fs';
 
 
@@ -13,6 +16,10 @@ import { NavComponent } from '@ionic/core';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  
+ 
+ user = {}
+ reg ={}
 
  opts: {
    
@@ -24,12 +31,14 @@ export class LoginPage implements OnInit {
    
   constructor(private statusBar: StatusBar,
      private navCtrl: NavController,
-     private storage: Storage) { 
+     private storageService: StorageService,
+     private authService: AuthService,
+     private alertCtrl: AlertController,) { 
   }
   ionViewDidLoad() {
     if (!this.statusBar.isVisible) {
         this.statusBar.show();
-        this.statusBar.backgroundColorByHexString('#FF8C00');
+        this.statusBar.backgroundColorByHexString('#cc6600');
     }
     this.statusBar.overlaysWebView(true);
 
@@ -70,8 +79,73 @@ export class LoginPage implements OnInit {
 
   }
   login(){
-    this.navCtrl.navigateRoot('');
-    this.storage.set('authenticated', 'true');
+   // console.log(this.user); debugging...
+    const loginattempt = this.authService.authenticate(this.user);
+    loginattempt.subscribe(data=>{
+      //const user = data;
+      if(data){
+        console.log(data)
+        this.redirecthome(data);
+      }
+    })
+
+    
   }
+
+  async register(){
+    this.authService.register(this.reg).subscribe(data=>{
+      if(data){
+          this.storageService.presentToast("Verifying...");
+          this.presentAlertPrompt(data);
+      }
+    })
+    
+
+  }
+  async presentAlertPrompt(userdata) {
+    const alert = await this.alertCtrl.create({
+      header: 'Hey '+ userdata.name,
+      message: 'Please enter the  <strong>code </strong> sent to your email to finalise your account set up!!',
+      inputs: [
+        {
+          name: 'code',
+          type: 'number',
+          placeholder: 'Enter code'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            this.authService.remove(userdata._id);
+            this.navCtrl.navigateRoot('/login');
+            this.storageService.presentToast("Registration aborted..");
+          }
+        }, {
+          text: 'Ok',
+          handler: (user) => {
+           const response = this.authService.confirm(userdata, user.code);
+           if(response){
+             console.log("created");
+             this.storageService.presentToast("Registration successful..");
+             this.storageService.store('regid', userdata._id);
+             this.navCtrl.navigateRoot(['/slides'],{queryParams:{data:userdata._id}});
+           }
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  redirecthome(data){
+       this.storageService.store("profile", data);
+       this.storageService.store("authenticated",true);
+       this.navCtrl.navigateRoot('');
+  }
+
 }
 

@@ -8,7 +8,8 @@ const routes: Routes = [
   },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'fingerprint', loadChildren: './fingerprint/fingerprint.module#FingerprintPageModule' },
-  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' }
+  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
+  { path: 'slides', loadChildren: './slides/slides.module#SlidesPageModule' }
 ];
 @NgModule({
   imports: [

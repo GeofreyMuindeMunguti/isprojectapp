@@ -24,7 +24,7 @@ export class AppComponent {
   ionViewDidLoad() {
     if (!this.statusBar.isVisible) {
         this.statusBar.show();
-        this.statusBar.backgroundColorByHexString('#FF8C00');
+        this.statusBar.backgroundColorByHexString('#cc6600');
     }
     this.statusBar.overlaysWebView(true);
 
@@ -33,10 +33,10 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.show();
-      this.statusBar.backgroundColorByHexString('#FF8C00');
+      this.statusBar.backgroundColorByHexString('#cc6600.');
       this.splashScreen.hide();
       
-     this.storage.set('fingerprint', 'true');
+     //this.storage.set('fingerprint', 'true');
       
       this.storage.get('authenticated').then((auth) =>{
         if(auth){
@@ -59,6 +59,12 @@ export class AppComponent {
           this.navctrl.navigateRoot('')
         }
       })
+  }
+  openProfile(){
+    this.navctrl.navigateBack('/profile');
+  }
+  openTabs(){
+    this.navctrl.navigateBack('')
   }
 
 }

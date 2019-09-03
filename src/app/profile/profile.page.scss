@@ -1,0 +1,37 @@
+ion-header {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+    }
+
+ion-content{
+    --background: url(../../assets/tabsbck.svg)
+}
+
+ 
+  
+  .profile-picture {
+     
+    padding: 3px;
+    border-radius: 100%;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    margin: 0 auto;
+    width: 128px;
+    height: 128px;
+    overflow: hidden;
+
+  }
+  
+  .profile-picture img {
+    width: 128px;
+    border-radius: 100%;
+  }
+  
+  .profile-name {
+    padding-top: 20px;
+    font-size: x-large !important;
+    font-weight: bold !important;
+    text-transform: capitalize;
+    text-align: center;
+  }

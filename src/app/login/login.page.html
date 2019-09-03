@@ -21,60 +21,42 @@
       <ion-slide>
       <ion-card mode="ios" style="margin-top: 10%; background-color: white; width: 80%; margin-left: auto; margin-right:auto;">
           <ion-card-content style="background: white;">
-            <ion-list lines="none" style="background-color: white;">
-                <ion-item no-lines>
-                    <ion-icon name="ios-mail" color="primary"></ion-icon>
-                  <ion-input style="background: white;" name="email"  type="email" placeholder="email" required></ion-input>
-                  </ion-item>
-                  <span style="color: grey;width:2px;"></span>
-                 <ion-item no-lines>
-                    <ion-icon name="lock" color="primary"></ion-icon>
-                  <ion-input name="password" type="password" placeholder="Password" required></ion-input>
-                  <!-- <ion-icon name="eye"></ion-icon>  -->
-                </ion-item>
-                <br/> 
-                 
-                    <ion-button (click)="login()">SIGN IN</ion-button>
-                  
-                </ion-list>
+            <form (ngSubmit)="login()">
+              <ion-item>
+                <ion-icon name="mail" color="primary"></ion-icon>
+                <ion-input type="text" [(ngModel)]="user.email" name="email"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="lock" color="primary"></ion-icon>
+                <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
+              </ion-item>
+              <ion-button type="submit" full>SIGN IN</ion-button>
+            </form>
           </ion-card-content>
         </ion-card>
         </ion-slide>
         <ion-slide>
             <ion-card mode="ios" style="margin-top: 5%; background-color: white; width: 80%; margin-left: auto; margin-right:auto;">
                 <ion-card-content style="background: white;">
-                  <ion-list lines="none" style="background-color: white;">
-                      <ion-item no-lines>
+                  <form (ngSubmit)="register()">
+                      <ion-item>
                           <ion-icon name="contact" color="primary"></ion-icon>
-                        <ion-input style="background: white;" name="name"  type="text" placeholder="Full Name" required></ion-input>
+                          <ion-input type="text" [(ngModel)]="reg.name" name="name"></ion-input>
                         </ion-item>
-                        <span style="color: grey;width:2px;"></span>
-                        <ion-item no-lines>
-                            <ion-icon name="mail" color="primary"></ion-icon>
-                          <ion-input style="background: white;" name="email"  type="email" placeholder="email" required></ion-input>
-                          </ion-item>
-                          <span style="color: grey;width:2px;"></span>
-                          <ion-item no-lines>
-                              <ion-icon name="call" color="primary"></ion-icon>
-                            <ion-input style="background: white;" name="phone"  type="number" placeholder="Phone Number" required></ion-input>
-                            </ion-item>
-                            <span style="color: grey;width:2px;"></span>
-                            <ion-item no-lines>
-                                <ion-icon name="lock" color="primary"></ion-icon>
-                              <ion-input name="password" type="password" placeholder="Confirm Password" required></ion-input>
-                              <!-- <ion-icon name="eye"></ion-icon>  -->
-                            </ion-item>
-                              <span style="color: grey;width:2px;"></span>
-                       <ion-item no-lines>
-                          <ion-icon name="lock" color="primary"></ion-icon>
-                        <ion-input name="password" type="password" placeholder="Password" required></ion-input>
-                        <!-- <ion-icon name="eye"></ion-icon>  -->
-                      </ion-item>
-                      <br/>
-                       
-                        <ion-button full>SIGN UP</ion-button>
-                      
-                      </ion-list>
+                    <ion-item>
+                      <ion-icon name="mail" color="primary"></ion-icon>
+                      <ion-input type="text" [(ngModel)]="reg.email" name="email"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-icon name="lock" color="primary"></ion-icon>
+                      <ion-input type="password" [(ngModel)]="reg.password" name="password"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-icon name="lock" color="primary"></ion-icon>
+                      <ion-input type="password" [(ngModel)]="reg.cpassword" name="cpassword"></ion-input>
+                    </ion-item>
+                    <ion-button type="submit" full>SIGN UP</ion-button>
+                  </form>
                 </ion-card-content>
               </ion-card>
               </ion-slide>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FingerprintOptions, FingerprintAIO} from '@ionic-native/fingerprint-aio/ngx';
-import { ToastController, NavController } from '@ionic/angular';
+import { ToastController, NavController, Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -14,7 +14,8 @@ export class FingerprintPage implements OnInit {
   constructor(private faio: FingerprintAIO,
     public toastController: ToastController,
     private navctrl: NavController,
-    private storage: Storage,) {
+    private storage: Storage,
+    private platform: Platform) {
        
      }
 
@@ -22,7 +23,7 @@ export class FingerprintPage implements OnInit {
      
   }
   ionViewWillEnter(){
-    console.log("checked")
+   // console.log("checked")
     this.checkauth();
   }
 
@@ -42,7 +43,7 @@ export class FingerprintPage implements OnInit {
         localizedReason: 'Please Authenticate' //Only for iOS
     })
     .then((result: any) => {
-     
+     console.log("Fingerprint available..")
      if(result){
       // this.showtoast("successfully authenticated")
        this.navctrl.navigateRoot('')
@@ -54,12 +55,13 @@ export class FingerprintPage implements OnInit {
      }
    })
    .catch((error: any) => {
-     
-     this.showtoast("error")
+    navigator['app'].exitApp();
+    this.showtoast("exiting app..")
    });
    }
    else {
     // this.showtoast("Fingerprint not available")
+    console.log("fingerprint not available..")
      this.navctrl.navigateRoot('');
       }
     })
