@@ -46,5 +46,9 @@ export class AuthService {
     return this.client.post(url,payload);
    
   }
+  getMeals(email){
+    console.log(email)
+    return this.client.get(`${api}/user/request/`+email);
+  }
    
 }

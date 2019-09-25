@@ -8,11 +8,15 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {AuthService} from '../services/auth.service';
-import {StorageService} from '../services/storage.service';
+import { AuthService} from '../services/auth.service';
+import { StorageService} from '../services/storage.service';
 import { HTTP } from '@ionic-native/http/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { from } from 'rxjs';
+import { Pedometer } from '@ionic-native/pedometer/ngx';
+import { Health } from '@ionic-native/health/ngx';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+
 //import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth/ngx';
  
 
@@ -29,8 +33,11 @@ import { from } from 'rxjs';
   providers: [
     StatusBar,
     SplashScreen,
+    Pedometer,
     AuthService,
     StorageService,
+    BackgroundMode,
+    Health,
     HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     FingerprintAIO,

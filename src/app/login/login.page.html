@@ -24,11 +24,11 @@
             <form (ngSubmit)="login()">
               <ion-item>
                 <ion-icon name="mail" color="primary"></ion-icon>
-                <ion-input type="text" [(ngModel)]="user.email" name="email"></ion-input>
+                <ion-input type="text" [(ngModel)]="user.email" name="email" placeholder="Email"></ion-input>
               </ion-item>
               <ion-item>
                 <ion-icon name="lock" color="primary"></ion-icon>
-                <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
+                <ion-input type="password" [(ngModel)]="user.password" name="password" placeholder="Password"></ion-input>
               </ion-item>
               <ion-button type="submit" full>SIGN IN</ion-button>
             </form>
@@ -41,19 +41,19 @@
                   <form (ngSubmit)="register()">
                       <ion-item>
                           <ion-icon name="contact" color="primary"></ion-icon>
-                          <ion-input type="text" [(ngModel)]="reg.name" name="name"></ion-input>
+                          <ion-input type="text" [(ngModel)]="reg.name" name="name" placeholder="Username"></ion-input>
                         </ion-item>
                     <ion-item>
                       <ion-icon name="mail" color="primary"></ion-icon>
-                      <ion-input type="text" [(ngModel)]="reg.email" name="email"></ion-input>
+                      <ion-input type="text" [(ngModel)]="reg.email" name="email" placeholder="Email"></ion-input>
                     </ion-item>
                     <ion-item>
                       <ion-icon name="lock" color="primary"></ion-icon>
-                      <ion-input type="password" [(ngModel)]="reg.password" name="password"></ion-input>
+                      <ion-input type="password" [(ngModel)]="reg.password" name="password" placeholder="Password"></ion-input>
                     </ion-item>
                     <ion-item>
                       <ion-icon name="lock" color="primary"></ion-icon>
-                      <ion-input type="password" [(ngModel)]="reg.cpassword" name="cpassword"></ion-input>
+                      <ion-input type="password" [(ngModel)]="reg.cpassword" name="cpassword" placeholder="Confirm Password"></ion-input>
                     </ion-item>
                     <ion-button type="submit" full>SIGN UP</ion-button>
                   </form>

@@ -12,6 +12,7 @@ export class StorageService {
         return true;
     }
     retrieve(key){
+      
         this.storage.get(key).then(value =>{
           console.log(value);
             return value;

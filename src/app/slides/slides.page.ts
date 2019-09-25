@@ -32,7 +32,7 @@ export class SlidesPage implements OnInit {
        const attempt = this.authService.createprofile(this.profile, value);
       attempt.subscribe(res=>{
         if(res){
-          this.navCtrl.navigateRoot('');
+          this.navCtrl.navigateRoot('/login');
         }
       })
     })

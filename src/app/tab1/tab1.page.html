@@ -18,12 +18,14 @@
           refreshingText="Refreshing...">
         </ion-refresher-content>
       </ion-refresher>
-  <div>
+    <div *ngIf="meals">
+    <div>
       <ion-label style="margin-left: 20px; font-size: 120%;">Breakfast</ion-label>
-    <ion-slides [options]="sliderConfig" pager="true" mode="ios" scrollbar="true" class="meals">
-        <ion-slide *ngFor="let meal of meals; let i = index">
-          <ion-card >
-                  <img src="assets/icon/meal2.jpg">
+    <ion-slides [options]="sliderConfig" pager="true" mode="ios"  class="meals">
+         <ng-container *ngFor="let meal of meals; let i = index">
+        <ion-slide *ngIf="meal.category == breakfast" (click)="viewMeal(meal)">
+        <ion-card >
+                  <img style="width: 500px; height: 150px;" src="{{meal.img_url}}">
                   <ion-fab vertical="top" horizontal="start" slot="fixed">
                         <ion-icon name="heart-empty" color="primary"  style="zoom:2.0;"></ion-icon>
                     </ion-fab>
@@ -32,55 +34,61 @@
                         <ion-badge class="badge">2</ion-badge>
                     </ion-fab>
                     <ion-card-header  color="light">
-                        <ion-card-subtitle>Destination</ion-card-subtitle>
-                        <ion-card-title>Madison, WI</ion-card-title>
+                        <ion-card-subtitle>{{meal.store}}</ion-card-subtitle>
+                        <ion-card-title>{{meal.name}}</ion-card-title>
                       </ion-card-header>
           </ion-card> 
         </ion-slide>
+        </ng-container>
        </ion-slides>
       </div>
        
       <div>
           <ion-label style="margin-left: 20px;  font-size: 120%;">Lunch</ion-label>
-          <ion-slides [options]="sliderConfig" pager="true" mode="ios" scrollbar="true"  class="meals" style=" height: 270px;" spaceBetween="-5">
-              <ion-slide *ngFor="let meal of meals; let i = index">
+          <ion-slides [options]="sliderConfig" pager="true" mode="ios"  class="meals"  spaceBetween="-5">
+            <ng-container *ngFor="let meal of meals; let i = index">
+            <ion-slide *ngIf="meal.category == lunch" (click)="viewMeal(meal)">
                 <ion-card>
-                        <img src="assets/icon/meal1.jpg">
-                        <ion-fab vertical="top" horizontal="start" slot="fixed">
-                              <ion-icon name="heart-empty" color="primary"  style="zoom:2.0;"></ion-icon>
-                          </ion-fab>
-                          <ion-fab vertical="top" horizontal="end" slot="fixed">
-                              <ion-icon name="star-outline" color="primary"  style="zoom:2.5;"></ion-icon>
-                              <ion-badge class="badge">2</ion-badge>
-                          </ion-fab>
-                          <ion-card-header  color="light">
-                              <ion-card-subtitle>Destination</ion-card-subtitle>
-                              <ion-card-title>Madison, WI</ion-card-title>
-                            </ion-card-header>
+                  <img style="width: 500px; height: 150px;"  src="{{meal.img_url}}">
+                  <ion-fab vertical="top" horizontal="start" slot="fixed">
+                        <ion-icon name="heart-empty" color="primary"  style="zoom:2.0;"></ion-icon>
+                    </ion-fab>
+                    <ion-fab vertical="top" horizontal="end" slot="fixed">
+                        <ion-icon name="star-outline" color="primary"  style="zoom:2.5;"></ion-icon>
+                        <ion-badge class="badge">2</ion-badge>
+                    </ion-fab>
+                    <ion-card-header  color="light">
+                        <ion-card-subtitle>{{meal.store}}</ion-card-subtitle>
+                        <ion-card-title>{{meal.name}}</ion-card-title>
+                      </ion-card-header>
                 </ion-card> 
               </ion-slide>
+              </ng-container>
              </ion-slides>
             </div>
 
      <div>
         <ion-label style="margin-left: 20px;  font-size: 120%;">Dinner</ion-label>
-           <ion-slides [options]="sliderConfig" pager="true" mode="ios" scrollbar="true"  class="meals" style=" height: 270px;" spaceBetween="-5">
-               <ion-slide *ngFor="let meal of meals; let i = index">
+           <ion-slides [options]="sliderConfig" pager="true" mode="ios"   class="meals" style=" height: 270px;" spaceBetween="-5"> 
+              <ng-container *ngFor="let meal of meals; let i = index">
+            <ion-slide *ngIf="meal.category == dinner" (click)="viewMeal(i=meal)">
                  <ion-card>
-                       <img src="assets/icon/meal2.jpg">
-                       <ion-fab vertical="top" horizontal="start" slot="fixed">
-                 <ion-icon name="heart-empty" color="primary"  style="zoom:2.0;"></ion-icon>
+                  <img style="width: 500px; height: 150px;" src="{{meal.img_url}}">
+                  <ion-fab vertical="top" horizontal="start" slot="fixed">
+                        <ion-icon name="heart-empty" color="primary"  style="zoom:2.0;"></ion-icon>
                     </ion-fab>
-                       <ion-fab vertical="top" horizontal="end" slot="fixed">
+                    <ion-fab vertical="top" horizontal="end" slot="fixed">
                         <ion-icon name="star-outline" color="primary"  style="zoom:2.5;"></ion-icon>
-                                    <ion-badge class="badge">2</ion-badge>
-                                </ion-fab>
-                                <ion-card-header  color="light">
-                                    <ion-card-subtitle>Destination</ion-card-subtitle>
-                                    <ion-card-title>Madison, WI</ion-card-title>
-                                  </ion-card-header>
+                        <ion-badge class="badge">2</ion-badge>
+                    </ion-fab>
+                    <ion-card-header  color="light">
+                        <ion-card-subtitle>{{meal.store}}</ion-card-subtitle>
+                        <ion-card-title>{{meal.name}}</ion-card-title>
+                      </ion-card-header>
                       </ion-card> 
                     </ion-slide>
+                  </ng-container>
            </ion-slides>
       </div>
+    </div>
 </ion-content>

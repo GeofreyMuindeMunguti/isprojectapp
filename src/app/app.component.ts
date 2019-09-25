@@ -4,6 +4,12 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 //import { LoginPage } from './login/login.page';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
+import { Pedometer, IPedometerData } from '@ionic-native/pedometer/ngx';
+import { StorageService } from '../../src/services/storage.service';
+import { Health } from '@ionic-native/health/ngx';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+
+
 
 @Component({
   selector: 'app-root',
@@ -17,9 +23,24 @@ export class AppComponent {
     private navctrl: NavController,
     private storage: Storage,
     private statusBar: StatusBar,
+    private pedometer: Pedometer,
+    private storageService: StorageService,
+    private health: Health,
+    private backgroundMode: BackgroundMode,
    // private statusBar: StatusBar
   ) {
     this.initializeApp();
+    this.platform.ready (). then (() => {
+      this.backgroundMode.enable();
+      this.getdistance();
+
+      this.backgroundMode.on("activate").subscribe(()=>{
+        this.getdistance();
+        this.storageService.presentToast("running");
+      });
+    });
+  
+    
   }
   ionViewDidLoad() {
     if (!this.statusBar.isVisible) {
@@ -27,8 +48,7 @@ export class AppComponent {
         this.statusBar.backgroundColorByHexString('#cc6600');
     }
     this.statusBar.overlaysWebView(true);
-
-
+    
 }
   initializeApp() {
     this.platform.ready().then(() => {
@@ -41,9 +61,11 @@ export class AppComponent {
       this.storage.get('authenticated').then((auth) =>{
         if(auth){
          this.checksettings();
+         //this.storageService.presentToast("auth")
         }
         else{
         this.navctrl.navigateRoot('/login')
+        //this.storageService.presentToast("no auth")
         }
       })
      
@@ -53,7 +75,7 @@ export class AppComponent {
     this.storage.get('fingerprint').then(setting =>
       {console.log(setting);
         if(setting){
-          this.navctrl.navigateRoot('/fingerprint')
+          this.navctrl.navigateRoot('')
         }
         else{
           this.navctrl.navigateRoot('')
@@ -67,5 +89,16 @@ export class AppComponent {
     this.navctrl.navigateBack('')
   }
 
+  getdistance(){
+  this.pedometer.isDistanceAvailable()
+  .then((available: boolean) => {console.log(available)
+  })
+  .catch((error: any) => {console.log(error)
+  this.pedometer.startPedometerUpdates()
+   .subscribe((data: IPedometerData) => {
+     //this.storageService.presentToast("Distance"+data.numberOfSteps);
+   });
+  });
+}
 }
 

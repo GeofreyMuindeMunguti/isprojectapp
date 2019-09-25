@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="primary">
+     
+    <ion-title >Meal-info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+       <ion-card>
+            <img style="width: 500px; height: 200px;"  src="{{meal.img_url}}">
+              <ion-card-header style="padding: 20px;" color="light">
+                  <ion-card-subtitle style="margin-left:auto; margin-right: auto;"> <ion-icon name="pin" color="primary"  style="zoom:1.5;"></ion-icon> {{ meal.store}}</ion-card-subtitle>
+                  <ion-card-title style="margin-left:auto; margin-right: auto;"> <ion-icon name="pizza" color="primary"  style="zoom:1.0;"></ion-icon> {{meal.name}}</ion-card-title>
+                  
+                  <ion-fab vertical="top" horizontal="start" slot="fixed">
+                      <ion-icon name="heart-empty" color="primary"  style="zoom:2.0;"></ion-icon>
+                  </ion-fab>
+                  <ion-fab vertical="top" horizontal="end" slot="fixed">
+                      <ion-icon name="star-outline" color="primary"  style="zoom:2.5;"></ion-icon>
+                      <ion-badge class="badge">2</ion-badge>
+                  </ion-fab>
+
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-label color="primary"><strong> Composition (per grams in {{meal.in_grams}} g)</strong></ion-label>
+                  <ion-grid>
+                   <ion-row style="  border-top: 0.1px solid orange ;">
+                      <ion-col col-6><span data-left>Category</span> </ion-col>
+                      <ion-col col-6>
+                        <span data-right>{{meal.category}}</span>
+                       </ion-col>
+                  </ion-row>
+                  <ion-row style="  border-top: 0.1px solid grey ;">
+                    <ion-col col-6><span data-left>Calories</span> </ion-col>
+                    <ion-col col-6>
+                      <span data-right>{{meal.calories}}</span>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row style="  border-top: 0.1px solid grey ;">
+                    <ion-col col-6><span data-left>Carbohydrates</span></ion-col>
+                    <ion-col col-6>
+                      <span data-right>{{meal.carbohydrates}}</span>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row style="  border-top: 0.1px solid grey ;">
+                    <ion-col col-6><span data-left>Proteins</span></ion-col>
+                    <ion-col col-6>
+                      <span data-right>{{meal.protein}}</span>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row style="  border-top: 0.1px solid grey ;">
+                    <ion-col col-6><span data-left>Fibre</span></ion-col>
+                    <ion-col col-6>
+                      <span data-right>{{meal.fibre}}</span>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row style="  border-top: 0.1px solid grey ;">
+                      <ion-col col-6><span data-left>Fat</span> </ion-col>
+                      <ion-col col-6>
+                        <span data-right>{{meal.fat}}</span>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row style="  border-top: 0.1px solid grey ;">
+                        <ion-col col-6><span data-left>Sugar</span> </ion-col>
+                        <ion-col col-6>
+                          <span data-right>{{meal.sugar}}</span>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row style="  border-top: 0.1px solid grey ;">
+                          <ion-col col-6><span data-left>Salt</span> </ion-col>
+                          <ion-col col-6>
+                            <span data-right>{{meal.salt}}</span>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row style="  border-top: 0.1px solid grey ; border-bottom: 0.1px solid orange ;">
+                            <ion-col col-6><span data-left>Quantiy(g)</span> </ion-col>
+                            <ion-col col-6>
+                              <span data-right>{{meal.grams}}</span>
+                            </ion-col>
+                          </ion-row> 
+                  </ion-grid>              
+                </ion-card-content>
+          </ion-card> 
+</ion-content>
