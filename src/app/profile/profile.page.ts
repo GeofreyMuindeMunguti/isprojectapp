@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Storage} from '@ionic/storage';
 import { NavController } from '@ionic/angular';
+import { AlertButton } from '@ionic/core';
+import {AlertController} from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import {SlidesPage} from '../slides/slides.page';
+import {AuthService} from '../../services/auth.service';
+import {StorageService} from '../../services/storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +20,11 @@ export class ProfilePage implements OnInit {
   totdee: any;
   steps: any;
   constructor( private storageService: Storage,
+               private alertCtrl: AlertController,
+               private storage: Storage,
+               private storageServiceStored: StorageService,
+               private authService: AuthService,
+               public modalController: ModalController,
                private navCtrl: NavController) { 
     this.storageService.get('profile').then(data=>{
       console.log(data);
@@ -59,5 +70,80 @@ export class ProfilePage implements OnInit {
     })
   }
 
-   
+  editprofile(){
+    this.storage.ready().then(()=>{
+     this.storage.get('profile').then((userdata)=>{
+       console.log(userdata._id)
+       this.showeditalert(userdata);
+  })
+  })
+}
+
+async showeditalert(userdata){
+  const alert =  await this.alertCtrl.create({
+    header: 'Hey '+ userdata.name,
+    message: 'Use this form to edit your profile!!',
+    inputs: [
+      {  
+        name: 'name',
+        type: 'text',
+        placeholder: 'name',
+        value: userdata.name
+      },
+      {  
+        name: 'email',
+        type: 'email',
+        placeholder: 'email',
+        value: userdata.email
+      },
+      {  
+        name: 'weight',
+        type: 'number',
+        placeholder: 'weight (Kg)',
+         
+      },
+      {  
+        name: 'height',
+        type: 'number',
+        placeholder: 'height (M)',
+        
+      },
+      {  
+        name: 'age',
+        type: 'number',
+        placeholder: 'age (Yrs)',
+         
+      },
+    ],
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+         // this.authService.remove(userdata._id);
+         // this.navCtrl.navigateRoot('/login');
+          //this.storageService.presentToast("Registration aborted..");
+        }
+      }, {
+        text: 'Ok',
+        handler: (user) => {
+         const response = this.authService.editprofile(user, userdata._id);
+         if(response){
+           response.subscribe((data)=>{
+             console.log(data);
+             this.storageServiceStored.store('profile', data)
+             this.storageServiceStored.presentToast("Profile edited successfully..");
+             this.navCtrl.navigateRoot('/tabs');
+           })
+           
+         }
+        }
+      }
+    ]
+  });
+  alert.present();
+}
+
+ 
 }

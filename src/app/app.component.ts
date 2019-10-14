@@ -7,9 +7,8 @@ import { Storage } from '@ionic/storage';
 import { Pedometer, IPedometerData } from '@ionic-native/pedometer/ngx';
 import { StorageService } from '../../src/services/storage.service';
 import { Health } from '@ionic-native/health/ngx';
+ 
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
-
-
 
 @Component({
   selector: 'app-root',
@@ -46,6 +45,11 @@ export class AppComponent {
     if (!this.statusBar.isVisible) {
         this.statusBar.show();
         this.statusBar.backgroundColorByHexString('#cc6600');
+        this.backgroundMode.enable();
+        this.backgroundMode.on("activate").subscribe(()=>{
+          this.getdistance();
+          this.storageService.presentToast("running");
+        });
     }
     this.statusBar.overlaysWebView(true);
     

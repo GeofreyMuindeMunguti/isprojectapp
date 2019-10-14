@@ -23,15 +23,15 @@
       <ion-label style="margin-left: 20px; font-size: 120%;">Breakfast</ion-label>
     <ion-slides [options]="sliderConfig" pager="true" mode="ios"  class="meals">
          <ng-container *ngFor="let meal of meals; let i = index">
-        <ion-slide *ngIf="meal.category == breakfast" (click)="viewMeal(meal)">
-        <ion-card >
-                  <img style="width: 500px; height: 150px;" src="{{meal.img_url}}">
+        <ion-slide *ngIf="meal.category == breakfast">
+        <ion-card>
+                  <img style="width: 500px; height: 150px;" src="{{meal.img_url}}" (click)="viewMeal(meal)">
                   <ion-fab vertical="top" horizontal="start" slot="fixed">
-                        <ion-icon name="heart-empty" color="primary"  style="zoom:2.0;"></ion-icon>
+                        <ion-icon name="heart-empty" color="primary"  style="zoom:2.0;" (click)="fav(meal)"></ion-icon>
                     </ion-fab>
                     <ion-fab vertical="top" horizontal="end" slot="fixed">
-                        <ion-icon name="star-outline" color="primary"  style="zoom:2.5;"></ion-icon>
-                        <ion-badge class="badge">2</ion-badge>
+                        <ion-icon name="star-outline" color="primary"  style="zoom:2.5;" (click)="like(meal._id, meal.likes)"></ion-icon>
+                        <ion-badge class="badge">{{meal.likes}}</ion-badge>
                     </ion-fab>
                     <ion-card-header  color="light">
                         <ion-card-subtitle>{{meal.store}}</ion-card-subtitle>
@@ -47,15 +47,15 @@
           <ion-label style="margin-left: 20px;  font-size: 120%;">Lunch</ion-label>
           <ion-slides [options]="sliderConfig" pager="true" mode="ios"  class="meals"  spaceBetween="-5">
             <ng-container *ngFor="let meal of meals; let i = index">
-            <ion-slide *ngIf="meal.category == lunch" (click)="viewMeal(meal)">
+            <ion-slide *ngIf="meal.category == lunch" >
                 <ion-card>
-                  <img style="width: 500px; height: 150px;"  src="{{meal.img_url}}">
+                  <img style="width: 500px; height: 150px;"  src="{{meal.img_url}}" (click)="viewMeal(meal)">
                   <ion-fab vertical="top" horizontal="start" slot="fixed">
-                        <ion-icon name="heart-empty" color="primary"  style="zoom:2.0;"></ion-icon>
+                        <ion-icon name="heart-empty" color="primary"  style="zoom:2.0;" (click)="fav(meal)"></ion-icon>
                     </ion-fab>
                     <ion-fab vertical="top" horizontal="end" slot="fixed">
-                        <ion-icon name="star-outline" color="primary"  style="zoom:2.5;"></ion-icon>
-                        <ion-badge class="badge">2</ion-badge>
+                        <ion-icon name="star-outline" color="primary"  style="zoom:2.5;" (click)="like(meal._id, meal.likes)"></ion-icon>
+                        <ion-badge class="badge">{{meal.likes}}</ion-badge>
                     </ion-fab>
                     <ion-card-header  color="light">
                         <ion-card-subtitle>{{meal.store}}</ion-card-subtitle>
@@ -71,15 +71,15 @@
         <ion-label style="margin-left: 20px;  font-size: 120%;">Dinner</ion-label>
            <ion-slides [options]="sliderConfig" pager="true" mode="ios"   class="meals" style=" height: 270px;" spaceBetween="-5"> 
               <ng-container *ngFor="let meal of meals; let i = index">
-            <ion-slide *ngIf="meal.category == dinner" (click)="viewMeal(i=meal)">
+            <ion-slide *ngIf="meal.category == dinner">
                  <ion-card>
-                  <img style="width: 500px; height: 150px;" src="{{meal.img_url}}">
+                  <img style="width: 500px; height: 150px;" src="{{meal.img_url}}" (click)="viewMeal(meal)">
                   <ion-fab vertical="top" horizontal="start" slot="fixed">
-                        <ion-icon name="heart-empty" color="primary"  style="zoom:2.0;"></ion-icon>
+                        <ion-icon name="heart-empty" color="primary"  style="zoom:2.0;" (click)="fav(meal)"></ion-icon>
                     </ion-fab>
                     <ion-fab vertical="top" horizontal="end" slot="fixed">
-                        <ion-icon name="star-outline" color="primary"  style="zoom:2.5;"></ion-icon>
-                        <ion-badge class="badge">2</ion-badge>
+                        <ion-icon name="star-outline" color="primary"  style="zoom:2.5;" (click)="like(meal._id, meal.likes)"></ion-icon>
+                        <ion-badge class="badge">{{meal.likes}}</ion-badge>
                     </ion-fab>
                     <ion-card-header  color="light">
                         <ion-card-subtitle>{{meal.store}}</ion-card-subtitle>

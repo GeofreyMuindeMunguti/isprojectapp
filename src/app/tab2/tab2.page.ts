@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {StorageService} from '../../services/storage.service';
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-tab2',
@@ -6,8 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  meals = [{"name":"Meal 1"},{"name":"Meal 2"},{"name":"Meal 3"}];
+  meals :any;
 
-  constructor() {}
-
+  constructor( private storageServiceStored: Storage,) {
+    
+  }
+  ionViewWillEnter(){
+    this.getMeals();
+  }
+  async getMeals(){
+    this.meals = await this.storageServiceStored.get('favouites');
+  }
 }

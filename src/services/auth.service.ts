@@ -50,5 +50,12 @@ export class AuthService {
     console.log(email)
     return this.client.get(`${api}/user/request/`+email);
   }
+  editprofile(user, id){
+    console.log(id)
+    return this.client.post(`${api}/user/`+id, user);
+  }
+  likemeal(id, payload){
+    return this.client.patch(`${api}/meals/`+id, payload);
+  }
    
 }

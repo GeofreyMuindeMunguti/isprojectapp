@@ -4,6 +4,7 @@ import {AuthService} from '../../services/auth.service';
 import {StorageService} from '../../services/storage.service';
 import {Storage} from '@ionic/storage';
 import { NavController } from '@ionic/angular';
+import { Health } from '@ionic-native/health/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -27,7 +28,8 @@ export class Tab1Page {
   constructor(private statusBar: StatusBar,
               private storage: Storage,
               private mealsService: AuthService,
-              private navCtrl: NavController
+              private navCtrl: NavController,
+              private health: Health
 
     ) {
       this.getMeals();
@@ -38,8 +40,8 @@ export class Tab1Page {
         this.statusBar.backgroundColorByHexString('#cc6600');
     }
     this.statusBar.overlaysWebView(true);
+    this.healthdata();
      
-  
   
   }
   doRefresh(event) {
@@ -66,6 +68,57 @@ export class Tab1Page {
   }
   viewMeal(meal){
      this.navCtrl.navigateForward(['/mealinfo'] ,{queryParams:meal})
+  }
+
+  healthdata(){
+    this.health.isAvailable()
+    .then((available:boolean) => {
+      console.log(available);
+      this.health.requestAuthorization([
+        'distance', 'nutrition',  //read and write permissions
+        {
+          read: ['steps'],       //read only permission
+          write: ['height', 'weight']  //write only permission
+        }
+      ])
+      .then(res => console.log(res))
+      .catch(e => console.log(e));
+    })
+    .catch(e => console.log(e));
+  
+  }
+
+  like(id, like){
+    console.log(like)
+    if(like==undefined){
+      like = 0;
+    }
+    const payload ={
+      likes : like+1,
+    }
+    console.log(payload)
+    this.mealsService.likemeal(id, payload).subscribe((Response)=>{
+      if(Response){
+        console.log(Response)
+      }
+    })
+  }
+  fav(meal){
+    var favs =  []
+    var checker = false;
+    this.storage.get('favouites').then((data)=>{
+      console.log(data);
+      if(!data){
+        favs.push(meal);
+       // console.log(favs);
+        this.storage.set('favouites', favs)
+      } 
+      else{
+        favs = data;
+        favs.push(meal);
+        this.storage.set('favouites', favs)
+      }
+    })
   }
 
 }
